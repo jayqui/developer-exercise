@@ -1,0 +1,7 @@
+.accordion-header {
+	background-color: gray;
+}
+
+.accordion-header div {
+	background-color: lightgray;
+}
