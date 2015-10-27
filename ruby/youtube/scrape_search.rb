@@ -18,8 +18,8 @@ uri = "https://www.youtube.com/results?search_query=#{plusified}"
 doc = Nokogiri::HTML(open(uri))
 h3_objects = doc.css(".yt-lockup-title").take(how_many)
 results = h3_objects.map do |h3|
-	links = h3.children.select {|child| child.name == "a"}
-	links.map do |link|
+	link_objects = h3.children.select {|child| child.name == "a"}
+	link_objects.map do |link|
 		"https://www.youtube.com" + link.attributes["href"].value
 	end[0]
 end
