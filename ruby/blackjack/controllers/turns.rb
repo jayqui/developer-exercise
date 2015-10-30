@@ -1,4 +1,4 @@
-class TurnController
+class TurnsController
 
 	def stand
 	end
@@ -11,5 +11,5 @@ class TurnController
 
 	def split
 	end
-	
+
 end

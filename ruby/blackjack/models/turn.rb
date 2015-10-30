@@ -11,4 +11,8 @@ class Turn
 		player_stands || hand.is_blackjack || hand.is_busted
 	end
 
+	def hit
+		
+	end
+
 end
