@@ -4,7 +4,7 @@ require_relative "../models/hand"
 
 describe "Hand" do
 
-	let(:player) { Player.new }
+	let(:player) { Player.new("James") }
 	let(:hand_1) { Hand.new(player, Card.new(:spades, :king, 10), Card.new(:diamonds, :six, 6)) }
 	let(:hand_2) { Hand.new(player, Card.new(:spades, :ace, [1,11]), Card.new(:diamonds, :six, 6)) }
 	let(:hand_3) { Hand.new(player, Card.new(:hearts, :six, 6), Card.new(:diamonds, :king, 10), Card.new(:spades, :ace, [1,11])) }
