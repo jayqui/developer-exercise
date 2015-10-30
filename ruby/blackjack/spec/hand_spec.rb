@@ -8,6 +8,8 @@ describe "Hand" do
 	let(:hand_3) { Hand.new(player, Card.new(:hearts, :six, 6), Card.new(:diamonds, :king, 10), Card.new(:spades, :ace, [1,11])) }
 	let(:hand_4) { Hand.new(player, Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :ace, [1,11]), Card.new(:hearts, :six, 6), Card.new(:diamonds, :king, 10), ) }
 	let(:four_aces_and_six_hand) { Hand.new(player, Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :ace, [1,11]), Card.new(:diamonds, :ace, [1,11]), Card.new(:clubs, :ace, [1,11]), Card.new(:hearts, :six, 6))  }
+	let(:blackjack_hand) { Hand.new(player, Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :ten, 10)) }
+	let(:hand_21) { Hand.new(player, Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :eight, 8), Card.new(:hearts, :two, 2)) }
 
 	describe "#score" do
 		context "hand with no aces" do
@@ -24,6 +26,33 @@ describe "Hand" do
 			end
 			it "should work even with four aces" do
 				expect(four_aces_and_six_hand.score).to eq([10, 20, 30, 40, 50])
+			end
+		end
+	end
+
+	describe "#is_blackjack?" do
+		context "when a hand is a blackjack" do
+			it "should return true if a hand is a blackjack" do
+				expect(blackjack_hand.is_blackjack?).to eq(true)
+			end
+			it "should assign an instance variable" do
+				expect(blackjack_hand.is_blackjack).to eq(true)
+			end
+		end
+		context "when a hand is not a blackjack" do
+			it "should return nil if a hand is a blackjack" do
+				expect(hand_1.is_blackjack?).to eq(nil)
+			end
+			it "should not have the instance variable" do
+				expect(hand_1.is_blackjack).to eq(nil)
+			end
+		end
+		context "when a hand adds to 21 but is more than 2 cards" do
+			it "should return nil if a hand is a blackjack" do
+				expect(hand_21.is_blackjack?).to eq(nil)
+			end
+			it "should not have the instance variable" do
+				expect(hand_21.is_blackjack).to eq(nil)
 			end
 		end
 	end

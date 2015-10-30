@@ -2,10 +2,10 @@ require_relative "../models/round"
 
 describe "Round" do
 
-	let(:dealer) { Player.new("Dealer", true)}
+	# let(:dealer) { Player.new("Dealer", true)}
 	let(:alice) { Player.new("Alice")}
 	let(:ben) { Player.new("Ben")}
-	let(:round) { Round.new(dealer, alice, ben) }
+	let(:round) { Round.new(alice, ben) }
 
 	describe "the round" do
 		it "each player should have two cards" do

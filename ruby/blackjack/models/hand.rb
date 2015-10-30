@@ -1,10 +1,11 @@
 class Hand
-	attr_reader :player
+	attr_reader :player, :is_blackjack
   attr_accessor :cards, :score
 
   def initialize(player, *cards)
     @cards = cards
     @player = player
+    is_blackjack?
   end
 
   def score
@@ -14,6 +15,12 @@ class Hand
 	  	subtotal = sum_total(cards_other_than_aces)
 	  	ace_sums.map {|sum| sum + subtotal}
   	end
+  end
+
+  def is_blackjack?
+		if cards.size == 2 && score == [11,21]
+	  	@is_blackjack = true
+		end
   end
 
   private
