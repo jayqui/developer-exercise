@@ -2,7 +2,7 @@ require_relative "../models/card"
 
 describe "Card" do
 
-	let(:card) { Card.new(:spades, :ace, 11)}
+	let(:card) { Card.new(:spades, :ace, [1,11])}
 	describe "#suit" do
 		it "is correct" do
 			expect(card.suit).to eq(:spades)
@@ -15,7 +15,7 @@ describe "Card" do
 	end
 	describe "#value" do
 		it "is correct" do
-			expect(card.value).to eq(11)
+			expect(card.value).to eq([1,11])
 		end
 	end
 end
