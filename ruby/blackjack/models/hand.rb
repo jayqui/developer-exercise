@@ -1,5 +1,5 @@
 class Hand
-	attr_reader :player, :is_blackjack
+	attr_reader :player, :is_blackjack, :is_busted
   attr_accessor :cards, :score
 
   def initialize(player, *cards)
@@ -21,6 +21,10 @@ class Hand
 		if cards.size == 2 && score == [11,21]
 	  	@is_blackjack = true
 		end
+  end
+
+  def is_busted?
+  	score > 21
   end
 
   private

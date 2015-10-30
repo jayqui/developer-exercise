@@ -2,7 +2,6 @@ require_relative "../models/round"
 
 describe "Round" do
 
-	# let(:dealer) { Player.new("Dealer", true)}
 	let(:alice) { Player.new("Alice")}
 	let(:ben) { Player.new("Ben")}
 	let(:round) { Round.new(alice, ben) }
