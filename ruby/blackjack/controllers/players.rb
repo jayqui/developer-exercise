@@ -6,4 +6,6 @@ class PlayersController
 		
 	end
 
+	def 
+
 end
