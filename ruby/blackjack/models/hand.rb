@@ -13,7 +13,6 @@ class Hand
 	  else
 	  	subtotal = sum_total(cards_other_than_aces)
 	  	ace_sums.map {|sum| sum + subtotal}
-	  	# .take_while {|x| x <= 21}
   	end
   end
 
@@ -42,7 +41,6 @@ class Hand
   	possible_ace_values = aces.map {|ace| ace.value}.flatten
   	combinations = possible_ace_values.combination(number_of_aces)
   	combinations.map {|combo| combo.inject(:+)}.uniq.sort
-  	# .take_while {|x| x <= 21}
   end
 
 end
