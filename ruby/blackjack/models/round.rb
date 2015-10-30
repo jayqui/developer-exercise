@@ -13,22 +13,10 @@ class Round
 	end
 
 	def round_over?
-		blackjack || dealer_stayed || dealer_busted
+		# everyone's turn is over
 	end
 
-	# private
-
-	def blackjack
-
-	end
-
-	def dealer_stayed
-
-	end
-
-	def dealer_busted
-
-	end
+	private
 
 	def add_dealer
 		hands << Hand.new(Player.new("Dealer",true), @deck.deal_card, @deck.deal_card)
