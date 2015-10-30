@@ -1,5 +1,3 @@
-require_relative "../models/player"
-require_relative "../models/card"
 require_relative "../models/hand"
 
 describe "Hand" do
