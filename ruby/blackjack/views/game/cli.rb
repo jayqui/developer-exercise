@@ -9,7 +9,7 @@ class GameView
 		text, names = nil, []
 		while text != "" && names.count < 4
 			text = gets.chomp
-			names << text
+			names << text unless text == ""
 		end
 		names
 	end

@@ -1,4 +1,4 @@
-require_relative "../models/hand"
+require_relative "../../models/hand"
 
 describe "Hand" do
 

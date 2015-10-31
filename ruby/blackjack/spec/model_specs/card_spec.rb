@@ -1,4 +1,4 @@
-require_relative "../models/card"
+require_relative "../../models/card"
 
 describe "Card" do
 

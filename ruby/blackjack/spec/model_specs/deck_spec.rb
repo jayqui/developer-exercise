@@ -1,4 +1,4 @@
-require_relative "../models/deck"
+require_relative "../../models/deck"
 
 describe "Deck" do
 

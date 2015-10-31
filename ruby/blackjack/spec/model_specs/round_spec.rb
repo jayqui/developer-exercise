@@ -1,4 +1,4 @@
-require_relative "../models/round"
+require_relative "../../models/round"
 
 describe "Round" do
 
