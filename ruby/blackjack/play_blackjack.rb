@@ -1,5 +1,4 @@
-# pc = PlayersController.new
-# pc.set_up_players
+require_relative "controllers/game"
 
-# rc = RoundsController.new
-# rc.new_round
+gc = GameController.new
+gc.set_players
