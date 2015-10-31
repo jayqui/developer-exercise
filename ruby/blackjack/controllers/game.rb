@@ -6,10 +6,11 @@ class GameController
 
 	def initialize
 		@view = GameView.new
+		view.introduction
 	end
 
 	def set_players
-		players = view.introduction
+		players = view.ask_for_player_names
 		@round = Round.new(players)
 	end
 

@@ -6,11 +6,10 @@ class GameView
 
 	def ask_for_player_names
 		puts "Enter the names of up to four players, then press `Enter`"
-		text, counter, names = "", 0, []
-		while text != ""
+		text, names = nil, []
+		while text != "" && names.count < 4
 			text = gets.chomp
 			names << text
-			counter += 1
 		end
 		names
 	end
