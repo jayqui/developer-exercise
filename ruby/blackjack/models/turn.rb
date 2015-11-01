@@ -1,9 +1,9 @@
 class Turn
-	attr_reader :hand
+	attr_reader :hand, :round
 	attr_accessor :player_stands
 
-	def initialize(hand)
-		@hand = hand
+	def initialize(hand, round)
+		@hand, @round = hand, round
 		@player_stands = false
 	end
 

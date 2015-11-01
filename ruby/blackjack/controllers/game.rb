@@ -17,16 +17,36 @@ class GameController
 
 	def play_game
 		round.hands.each do |hand|
-			# p hand.player
 			view.say_whose_turn(hand.player.name)
-			view.say_cards(hand.cards)
-			handle_player_actions
+			turn = Turn.new(hand, round)
+
+			handle_player_actions(turn)
 		end
 	end
 
-	def handle_player_actions
-			view.ask_for_action
-			
+	def handle_player_actions(turn)
+			action = nil
+			hand = turn.hand
+			until action == 's' || hand.is_blackjack || hand.is_busted
+
+				say_cards_and_score(hand)
+				action = view.ask_for_action
+
+				case
+				when hand.is_blackjack
+					view.blackjack_message
+					break
+				when action == 'h'
+					puts "HITTY HITTY HIT MAY"
+				when action == 's'
+					puts "STAY STAY STAY FOR A WHILE"
+				end
+			end
+	end
+
+	def say_cards_and_score(hand)
+		view.say_cards(hand.cards)
+		view.say_score(hand.score)
 	end
 
 end
