@@ -8,7 +8,7 @@ class Turn
 	end
 
 	def hit
-		
+		hand.cards << round.deck.deal_card
 	end
 
 	def double_down
