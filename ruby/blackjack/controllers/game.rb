@@ -10,10 +10,18 @@ class GameController
 	end
 
 	def set_players
-		players = view.ask_for_player_names
+		names = view.ask_for_player_names
+		players = names.map {|name| Player.new(name)}
 		@round = Round.new(players)
 	end
 
-
+	def play_game
+		round.hands.each do |hand|
+			# p hand.player
+			view.say_whose_turn(hand.player.name)
+			view.say_cards(hand.cards)
+			view.ask_for_action
+		end
+	end
 
 end

@@ -14,4 +14,21 @@ class GameView
 		names
 	end
 
+	def say_whose_turn(player)
+		puts "It's #{player}'s turn."
+	end
+
+	def say_cards(cards)
+		print "The cards in this hand are: "
+		cards.each do |card|
+			print "#{card.name} of #{card.suit} "
+		end
+		puts
+	end
+
+	def ask_for_action
+		puts "Hit (`h`) or Stand (`s`)?"
+		gets.chomp
+	end
+
 end
