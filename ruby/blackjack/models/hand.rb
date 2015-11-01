@@ -1,5 +1,5 @@
 class Hand
-	attr_reader :player, :is_blackjack, :is_busted
+	attr_reader :player, :is_blackjack
   attr_accessor :cards, :score
 
   def initialize(player, *cards)
@@ -23,7 +23,7 @@ class Hand
 		end
   end
 
-  def is_busted?
+  def is_busted
   	score > 21
   end
 
