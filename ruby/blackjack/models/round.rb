@@ -6,9 +6,9 @@ class Round
 	attr_reader :deck
 	attr_accessor :hands
 	
-	def initialize(*players)
+	def initialize(players_arr)
 		@deck = Deck.new
-		@hands = players.map {|player| Hand.new(player, @deck.deal_card, @deck.deal_card) }
+		@hands = players_arr.map {|player| Hand.new(player, @deck.deal_card, @deck.deal_card) }
 		add_dealer
 	end
 
