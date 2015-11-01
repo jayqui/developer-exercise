@@ -39,4 +39,8 @@ class GameView
 		puts "BLACKJACK!!!"
 	end
 
+	def busted_message
+		puts "BUSTED!!!"
+	end
+
 end
