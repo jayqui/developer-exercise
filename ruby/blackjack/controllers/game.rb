@@ -32,9 +32,11 @@ class GameController
 
 			loop do
 				if hand.is_blackjack
+					say_cards_and_score(hand)
 					view.blackjack_message
 					break
 				elsif hand.is_busted
+					say_cards_and_score(hand)
 					view.busted_message
 					break
 				end

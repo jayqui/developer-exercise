@@ -1,3 +1,5 @@
+require_relative "../card_symbols"
+
 class GameView
 
 	def introduction
@@ -15,18 +17,21 @@ class GameView
 	end
 
 	def say_whose_turn(player)
-		puts "=== It's #{player}'s turn. ==="
+		puts "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
+		puts "========= #{player}'s turn. ========="
+		puts "/////////////////////////////"
 	end
 
 	def say_dealer_show_card(card)
 		print "The dealer is showing: "
-		puts "#{card.name} of #{card.suit}\n\n"
+		print "#{NAME_SYMBOLS[card.name]}#{SYM[card.suit]} \n\n"
 	end
 
 	def say_cards(cards)
-		print "The cards in this hand are: "
+		# print "The cards in this hand are: "
+		puts
 		cards.each do |card|
-			print "#{card.name} of #{card.suit} "
+			print "#{NAME_SYMBOLS[card.name]}#{SYM[card.suit]} "
 		end
 		puts
 	end
