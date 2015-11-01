@@ -22,7 +22,7 @@ describe "GameController" do
         .to receive(:chomp)
         .and_return("")
 
-      gc.view = view
+      allow(gc).to receive(:view) { view }
     end
 
 		it "should return a valid round" do
@@ -30,7 +30,7 @@ describe "GameController" do
 		end
 
 		it "should have players equivalent to those entered in the view" do
-			expect(gc.set_players.hands[0].player.name).to eq("Cal")
+			expect(gc.set_players.hands.map {|hand| hand.player.name }).to eq(["Cal","Dale","Dealer"])
 		end
 	end
 end

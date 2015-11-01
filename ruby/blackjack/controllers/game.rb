@@ -2,7 +2,7 @@ Dir[File.dirname(__FILE__) + "/../models/*.rb"].each {|file| require file}
 require_relative "../views/game/cli"
 
 class GameController
-	attr_accessor :view, :round
+	attr_reader :view, :round
 
 	def initialize
 		@view = GameView.new

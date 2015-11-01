@@ -1,0 +1,11 @@
+## old syntax for stubbing
+gc.stub(:view) { view }
+gc.stub(:view).and_return(view)
+
+
+##  This works but apparently breaks encapsulation unacceptably
+gc.instance_variable_set(:@view, view)  
+
+
+##  up-to-date way to proceed
+allow(gc).to receive(:view) { view }
