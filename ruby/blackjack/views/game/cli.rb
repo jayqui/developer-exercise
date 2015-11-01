@@ -26,9 +26,17 @@ class GameView
 		puts
 	end
 
+	def say_score(score)
+		print "Score: #{score}\n"
+	end
+
 	def ask_for_action
 		puts "Hit (`h`) or Stand (`s`)?"
 		gets.chomp
+	end
+
+	def blackjack_message
+		puts "BLACKJACK!!!"
 	end
 
 end
