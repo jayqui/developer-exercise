@@ -15,7 +15,12 @@ class GameView
 	end
 
 	def say_whose_turn(player)
-		puts "It's #{player}'s turn."
+		puts "=== It's #{player}'s turn. ==="
+	end
+
+	def say_dealer_show_card(card)
+		print "The dealer is showing: "
+		puts "#{card.name} of #{card.suit}\n\n"
 	end
 
 	def say_cards(cards)
@@ -36,11 +41,15 @@ class GameView
 	end
 
 	def blackjack_message
-		puts "BLACKJACK!!!"
+		puts "BLACKJACK!!!\n\n"
 	end
 
 	def busted_message
-		puts "BUSTED!!!"
+		puts "BUSTED!!!\n\n"
+	end
+
+	def stand_message(player)
+		puts "#{player} stands.\n\n"
 	end
 
 end

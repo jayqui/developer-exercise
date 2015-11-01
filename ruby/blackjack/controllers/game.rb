@@ -16,6 +16,10 @@ class GameController
 	end
 
 	def play_game
+		dealer_hand = round.hands.find {|hand| hand.player.is_dealer}
+		show_card = dealer_hand.cards[1]
+		view.say_dealer_show_card(show_card)
+
 		round.hands.each do |hand|
 			view.say_whose_turn(hand.player.name)
 			turn = Turn.new(hand, round)
@@ -27,26 +31,38 @@ class GameController
 	def handle_player_actions(turn)
 			action = nil
 			hand = turn.hand
-			until action == 's' || hand.is_blackjack || hand.is_busted
 
-				say_cards_and_score(hand)
-				action = view.ask_for_action
-
-				case
-				when hand.is_blackjack
+			loop do
+				if hand.is_blackjack
 					view.blackjack_message
 					break
-				when action == 'h'
-					puts "HITTY HITTY HIT MAY"
-				when action == 's'
-					puts "STAY STAY STAY FOR A WHILE"
+				elsif hand.is_busted
+					view.busted_message
+					break
+				end
+
+				action = update_for_input(hand)
+
+				case action
+				when 'h'
+					turn.hit
+				when 's'
+					view.stand_message(hand.player.name)
+					break
 				end
 			end
 	end
 
+	private
+
 	def say_cards_and_score(hand)
 		view.say_cards(hand.cards)
 		view.say_score(hand.score)
+	end
+
+	def update_for_input(hand)
+		say_cards_and_score(hand)
+		view.ask_for_action
 	end
 
 end
