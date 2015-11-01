@@ -24,7 +24,11 @@ class Hand
   end
 
   def is_busted
-  	score > 21
+    if score.is_a?(Fixnum)
+      score > 21
+    elsif score.is_a?(Array)
+      score.min > 21
+    end
   end
 
   private
