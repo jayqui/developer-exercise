@@ -16,9 +16,7 @@ class GameController
 	end
 
 	def play_game
-		dealer_hand = round.hands.find {|hand| hand.player.is_dealer}
-		show_card = dealer_hand.cards[1]
-		view.say_dealer_show_card(show_card)
+		announce_dealer_show_card
 
 		round.hands.each do |hand|
 			view.say_whose_turn(hand.player.name)
@@ -54,6 +52,12 @@ class GameController
 	end
 
 	private
+
+	def announce_dealer_show_card
+		dealer_hand = round.hands.find {|hand| hand.player.is_dealer}
+		show_card = dealer_hand.cards[1]
+		view.say_dealer_show_card(show_card)
+	end
 
 	def say_cards_and_score(hand)
 		view.say_cards(hand.cards)
