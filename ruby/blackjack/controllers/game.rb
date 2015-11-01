@@ -20,8 +20,13 @@ class GameController
 			# p hand.player
 			view.say_whose_turn(hand.player.name)
 			view.say_cards(hand.cards)
-			view.ask_for_action
+			handle_player_actions
 		end
+	end
+
+	def handle_player_actions
+			view.ask_for_action
+			
 	end
 
 end
