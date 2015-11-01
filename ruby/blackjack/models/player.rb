@@ -1,5 +1,5 @@
 class Player
-	attr_reader :is_dealer
+	attr_reader :name, :is_dealer
 
 	def initialize(name, dealer_true_or_false = false)
 		@name = name
