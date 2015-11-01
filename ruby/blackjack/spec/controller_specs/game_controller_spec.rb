@@ -3,27 +3,34 @@ require_relative "../../controllers/game.rb"
 describe "GameController" do
 
 	let(:gc) { GameController.new }
-
+	let(:view) { GameView.new }
+	
 	describe "set_players" do
 		before do
       io_obj = double
-      expect(gc)
+      expect(view)
         .to receive(:gets)
         .and_return(io_obj)
         .at_least(:once)
       expect(io_obj)
         .to receive(:chomp)
-        .and_return("Al")
+        .and_return("Cal")
       expect(io_obj)
         .to receive(:chomp)
-        .and_return("Bea")
+        .and_return("Dale")
       expect(io_obj)
         .to receive(:chomp)
         .and_return("")
+
+      gc.view = view
     end
 
 		it "should return a valid round" do
 			expect(gc.set_players).to be_a(Round)
+		end
+
+		it "should have players equivalent to those entered in the view" do
+			expect(gc.set_players.hands[0].player.name).to eq("Cal")
 		end
 	end
 end
