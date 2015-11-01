@@ -27,21 +27,20 @@ class GameController
 	end
 
 	def handle_player_actions(turn)
-			action = nil
 			hand = turn.hand
 
 			loop do
+				say_cards_and_score(hand)
+				
 				if hand.is_blackjack
-					say_cards_and_score(hand)
 					view.blackjack_message
 					break
 				elsif hand.is_busted
-					say_cards_and_score(hand)
 					view.busted_message
 					break
 				end
 
-				action = update_for_input(hand)
+				action = view.ask_for_action
 
 				case action
 				when 'h'
@@ -64,11 +63,6 @@ class GameController
 	def say_cards_and_score(hand)
 		view.say_cards(hand.cards)
 		view.say_score(hand.score)
-	end
-
-	def update_for_input(hand)
-		say_cards_and_score(hand)
-		view.ask_for_action
 	end
 
 end
