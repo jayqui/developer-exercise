@@ -28,7 +28,6 @@ class GameView
 	end
 
 	def say_cards(cards)
-		# print "The cards in this hand are: "
 		puts
 		cards.each do |card|
 			print "#{NAME_SYMBOLS[card.name]}#{SYM[card.suit]} "
