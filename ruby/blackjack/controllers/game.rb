@@ -31,7 +31,7 @@ class GameController
 
 			loop do
 				say_cards_and_score(hand)
-				
+
 				if hand.is_blackjack
 					view.blackjack_message
 					break
@@ -54,8 +54,11 @@ class GameController
 
 	private
 
+	def dealer_hand
+		round.hands.find {|hand| hand.player.is_dealer}
+	end
+
 	def announce_dealer_show_card
-		dealer_hand = round.hands.find {|hand| hand.player.is_dealer}
 		show_card = dealer_hand.cards[1]
 		view.say_dealer_show_card(show_card)
 	end
