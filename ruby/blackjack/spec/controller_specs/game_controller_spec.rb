@@ -140,35 +140,33 @@ describe "GameController" do
 		def eval_first_hand
 			gc.evaluate_outcome(gc.round.hands.first)
 		end
+		def test_hands(*hands)
+			allow(test_round).to receive(:hands) { hands }
+			allow(gc).to receive(:round) { test_round }
+		end
 
 		it "should return 0 if the hands are equal" do
-			allow(test_round).to receive(:hands) { [hand_19, dealer_hand_19] }
-			allow(gc).to receive(:round) { test_round }
+			test_hands(hand_19, dealer_hand_19)
 			expect(eval_first_hand).to eq(0)
 		end
 		it "should return 0 if hand & dealer hand are both busted" do
-			allow(test_round).to receive(:hands) { [hand_30, dealer_hand_31] }
-			allow(gc).to receive(:round) { test_round }
+			test_hands(hand_30, dealer_hand_31)
 			expect(eval_first_hand).to eq(0)
 		end
 		it "should return 1 if non-busted player hand beats dealer" do
-			allow(test_round).to receive(:hands) { [hand_20, dealer_hand_19] }
-			allow(gc).to receive(:round) { test_round }
+			test_hands(hand_20, dealer_hand_19)
 			expect(eval_first_hand).to eq(1)
 		end
 		it "should return -1 if non-busted dealer beats player" do
-			allow(test_round).to receive(:hands) { [hand_19, dealer_hand_20] }
-			allow(gc).to receive(:round) { test_round }
+			test_hands(hand_19, dealer_hand_20)
 			expect(eval_first_hand).to eq(-1)
 		end
 		it "should return 1 if player isn't busted but dealer is" do
-			allow(test_round).to receive(:hands) { [hand_19, dealer_hand_31] }
-			allow(gc).to receive(:round) { test_round }
+			test_hands(hand_19, dealer_hand_31)
 			expect(eval_first_hand).to eq(1)
 		end
 		it "should return -1 if dealer isn't busted but player is" do
-			allow(test_round).to receive(:hands) { [hand_30, dealer_hand_20] }
-			allow(gc).to receive(:round) { test_round }
+			test_hands(hand_30, dealer_hand_20)
 			expect(eval_first_hand).to eq(-1)
 		end
 	end
