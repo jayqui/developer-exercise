@@ -17,21 +17,25 @@ class GameController
 
 	def play_game
 		announce_dealer_show_card
-		play_hands
+		play_hands(non_dealer_hands)
+		play_hands([dealer_hand], "simulate")
 		evaluate_outcomes
 	end
 
-	def play_hands
-		round.hands.each do |hand|
+	def play_hands(hands, simulate = false)
+		hands.each do |hand|
 			view.say_whose_turn(hand.player.name)
 			turn = Turn.new(hand, round)
-			handle_player_actions(turn)
+			if !simulate
+				handle_player_actions(turn)
+			else
+				simulate_turn(turn)
+			end
 		end
 	end
 
 	def handle_player_actions(turn)
 			hand = turn.hand
-			is_dealer = turn.hand.player.is_dealer
 
 			loop do
 				say_cards_and_score(hand)
@@ -44,25 +48,39 @@ class GameController
 					break
 				end
 
-				if !is_dealer
-					action = view.ask_for_action
+				action = view.ask_for_action
 
-					case action
-					when 'h'
-						turn.hit
-					when 's'
-						view.stand_message(hand.player.name)
-						break
-					end
-				elsif is_dealer
-					if hand.max_score < 17
-						turn.hit
-					else
-						view.stand_message(hand.player.name)
-						break
-					end
+				case action
+				when 'h'
+					turn.hit
+				when 's'
+					view.stand_message(hand.player.name)
+					break
 				end
 			end
+	end
+
+	def simulate_turn(turn)
+		hand = turn.hand
+
+		loop do
+			say_cards_and_score(hand)
+
+			if hand.is_blackjack
+				view.blackjack_message
+				break
+			elsif hand.is_busted
+				view.busted_message
+				break
+			end
+
+			if hand.max_score < 17
+				turn.hit
+			else
+				view.stand_message(hand.player.name)
+				break
+			end
+		end
 	end
 
 	def evaluate_outcome(hand)
