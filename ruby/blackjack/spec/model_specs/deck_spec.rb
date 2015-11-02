@@ -71,13 +71,13 @@ describe "Deck" do
 			before(:each) do
 				16.times { deck.deal_10_value_card }
 			end
-			it "should take four aces from the deck" do
+			it "should take 16 ten-point cards from the deck" do
 				expect(deck.playable_cards.size).to eq(36)
 			end
-			it "should leave the deck devoid of aces after all originals are removed" do
-				expect(deck.playable_cards.any? {|card| card.name == :ace })
+			it "should leave the deck devoid of ten-point cards after all originals are removed" do
+				expect(deck.playable_cards.any? {|card| card.value == 10 })
 			end
-			it "should return nil if there are no aces left" do
+			it "should return nil if there are no ten-point cards left" do
 				card = deck.deal_10_value_card
 				expect(card).to eq(nil)
 			end
