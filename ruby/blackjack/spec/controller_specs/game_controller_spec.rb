@@ -19,8 +19,8 @@ describe "GameController" do
 
 	# test hands
 	let(:hand_19) { Hand.new(Player.new("Mr. 19"), Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :six, 6), Card.new(:hearts, :two, 2)) }
-	let(:hand_20) { Hand.new(Player.new("Dr. 20"), Card.new(:spades, :king, 10), Card.new(:hearts, :jack, 10)) }
-	let(:hand_30) { Hand.new(Player.new("Ms. 30"), Card.new(:spades, :king, 10), Card.new(:hearts, :king, 10), Card.new(:hearts, :queen, 10)) }
+	let(:hand_20) { Hand.new(Player.new("Ms. 20"), Card.new(:spades, :king, 10), Card.new(:hearts, :jack, 10)) }
+	let(:hand_30) { Hand.new(Player.new("Dr. 30"), Card.new(:spades, :king, 10), Card.new(:hearts, :king, 10), Card.new(:hearts, :queen, 10)) }
 
 	# test hands: dealer
 	let(:dealer_hand_19) { Hand.new(Player.new("Dealer", true), Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :six, 6), Card.new(:hearts, :two, 2)) }
@@ -30,19 +30,10 @@ describe "GameController" do
 
 	before(:each) do
     io_obj = double
-    expect(view)
-      .to receive(:gets)
-      .and_return(io_obj)
-      .at_least(:once)
-    expect(io_obj)
-      .to receive(:chomp)
-      .and_return("Cal")
-    expect(io_obj)
-      .to receive(:chomp)
-      .and_return("Dale")
-    expect(io_obj)
-      .to receive(:chomp)
-      .and_return("")
+    expect(view).to receive(:gets).and_return(io_obj).at_least(:once)
+    expect(io_obj).to receive(:chomp).and_return("Cal")
+    expect(io_obj).to receive(:chomp).and_return("Dale")
+    expect(io_obj).to receive(:chomp).and_return("")
 
     allow(gc).to receive(:view) { view }
   end
@@ -63,10 +54,7 @@ describe "GameController" do
 		context "when hand is not a blackjack" do
 			before(:each) do
 				gc.set_players
-
-				allow(view)
-				.to receive(:ask_for_action)
-				.and_return('h')
+				allow(view).to receive(:ask_for_action).and_return('h')
 
 				# rig a hand that does not get dealt a blackjack
 				allow(non_lucky_round).to receive(:hands) { non_lucky_hand_array }
@@ -92,10 +80,7 @@ describe "GameController" do
 		context "when hand is a blackjack" do
 			before(:each) do
 				gc.set_players
-
-				allow(view)
-				.to receive(:ask_for_action)
-				.and_return('h')
+				allow(view).to receive(:ask_for_action).and_return('h')
 
 				# rig a lucky hand that gets dealt a (random) blackjack
 				allow(lucky_round).to receive(:hands) { lucky_hand_array }
@@ -121,10 +106,7 @@ describe "GameController" do
 	describe "#play_game" do
 		before(:each) do
 			gc.set_players
-
-			allow(view)
-			.to receive(:ask_for_action)
-			.and_return('h')
+			allow(view).to receive(:ask_for_action).and_return('h')
 		end
 
 		it "returns an array of hands" do
@@ -135,14 +117,11 @@ describe "GameController" do
 	describe "#simulate_game" do
 		before(:each) do
 			gc.set_players
-
-			allow(view)
-			.to receive(:ask_for_action)
-			.and_return('h')
+			allow(view).to receive(:ask_for_action).and_return('h')
 		end
 
 		it "returns an array of hands" do
-			expect(gc.play_game.class == Array && gc.play_game[0].class).to eq(Hand)
+			expect(gc.play_game.class == Array && gc.play_game[0].class == Hand).to eq(true)
 		end
 	end
 
@@ -188,13 +167,10 @@ describe "GameController" do
 	describe "#evaluate_outcomes" do
 		before(:each) do
 			gc.set_players
-
-			allow(view)
-			.to receive(:ask_for_action)
-			.and_return('h')
+			allow(view).to receive(:ask_for_action).and_return('h')
 		end
 		it "returns an array of hands" do
-			expect(gc.evaluate_outcomes.class == Array && gc.play_game[0].class).to eq(Hand)
+			expect(gc.evaluate_outcomes.class == Array && gc.play_game[0].class == Hand).to eq(true)
 		end
 	end
 end
