@@ -1,9 +1,9 @@
 ###############################
 ###############################
-# ENTER YOUR SEARCH QUERY HERE:
-search_query = "cool stuff"
-# HOW MANY VIDEOS WOULD YOU LIKE? (UP TO 20)
-how_many = 3
+puts "ENTER TEXT TO SEARCH ON YOUTUBE: "
+search_query = gets.chomp
+puts "HOW MANY VIDEOS WOULD YOU LIKE? (UP TO 20)?"
+how_many = gets.chomp.to_i
 ###############################
 ###############################
 
@@ -28,7 +28,7 @@ p results
 
 # Note to self: for future coolness:
 
-#### Obviously, you could add a front end that supplies the string and number via html <input>s
+#### Obviously, you could add an in-browser front end that supplies the string and number via html <input>s
 #
 #### You could also embed the results right on the search page with the 'embed' feature (see tab below any video)---they just give you an iframe like so:
 #
