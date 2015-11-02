@@ -31,6 +31,7 @@ class GameController
 
 	def handle_player_actions(turn)
 			hand = turn.hand
+			is_dealer = turn.hand.player.is_dealer
 
 			loop do
 				say_cards_and_score(hand)
@@ -43,14 +44,23 @@ class GameController
 					break
 				end
 
-				action = view.ask_for_action
+				if !is_dealer
+					action = view.ask_for_action
 
-				case action
-				when 'h'
-					turn.hit
-				when 's'
-					view.stand_message(hand.player.name)
-					break
+					case action
+					when 'h'
+						turn.hit
+					when 's'
+						view.stand_message(hand.player.name)
+						break
+					end
+				elsif is_dealer
+					if hand.max_score < 17
+						turn.hit
+					else
+						view.stand_message(hand.player.name)
+						break
+					end
 				end
 			end
 	end
