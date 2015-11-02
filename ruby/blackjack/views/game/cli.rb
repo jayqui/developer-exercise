@@ -61,4 +61,12 @@ class GameView
 		puts "#{player} stands.\n\n"
 	end
 
+	def comparison_message(hand, outcome, dealer_score)
+		case outcome
+		when 1 then puts "#{hand.player.name} (#{hand.score}) beats dealer (#{dealer_score})"
+		when 0 then puts "#{hand.player.name} (#{hand.score}) ties dealer (#{dealer_score})"
+		when -1 then puts "#{hand.player.name} (#{hand.score}) loses to dealer (#{dealer_score})"
+		end
+	end
+
 end

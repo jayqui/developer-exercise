@@ -24,6 +24,7 @@ class GameController
 
 			handle_player_actions(turn)
 		end
+		evaluate_outcomes
 	end
 
 	def handle_player_actions(turn)
@@ -52,10 +53,39 @@ class GameController
 			end
 	end
 
+	def evaluate_outcomes
+		non_dealer_hands.each do |hand|
+			p "hand.inspect: #{hand.inspect}"
+			if max_score(hand) > max_score(dealer_hand)
+				p "greater"
+				outcome = 1
+			elsif max_score(hand) == max_score(dealer_hand)
+				p "tied"
+				outcome = 0
+			elsif max_score(hand) < max_score(dealer_hand)
+				p "less than"
+				outcome = -1
+			end
+			view.comparison_message(hand, outcome, dealer_hand.score)
+		end
+	end
+
 	private
+
+	def max_score(hand)
+		if hand.score.is_a?(Fixnum)
+			hand.score
+		elsif hand.score.is_a?(Array)
+			hand.score.select {|ele| ele < 21}.max
+		end
+	end
 
 	def dealer_hand
 		round.hands.find {|hand| hand.player.is_dealer}
+	end
+
+	def non_dealer_hands
+		round.hands.reject {|hand| hand.player.is_dealer }
 	end
 
 	def announce_dealer_show_card
