@@ -12,10 +12,6 @@ class Round
 		add_dealer
 	end
 
-	def round_over?
-		# everyone's turn is over
-	end
-
 	private
 
 	def add_dealer
