@@ -21,8 +21,8 @@ class Hand
     if score.is_a?(Fixnum)
       score
     elsif score.is_a?(Array)
-      scores = score.select {|ele| ele <= 21}
-      scores.max || score.min
+      scores_under_21 = score.select {|ele| ele <= 21}
+      scores_under_21.max || score.min
     end
   end
 

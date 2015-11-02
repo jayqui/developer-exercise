@@ -56,11 +56,15 @@ class GameController
 	end
 
 	def evaluate_outcome(hand)
-		if hand.max_score > dealer_hand.max_score
-			1
-		elsif hand.max_score == dealer_hand.max_score
+		if hand.max_score == dealer_hand.max_score || (hand.is_busted && dealer_hand.is_busted)
 			0
-		elsif hand.max_score < dealer_hand.max_score
+		elsif hand.max_score > dealer_hand.max_score && !hand.is_busted
+			1
+		elsif hand.max_score < dealer_hand.max_score && !dealer_hand.is_busted
+			-1
+		elsif dealer_hand.is_busted && !hand.is_busted
+			1
+		elsif hand.is_busted && !dealer_hand.is_busted
 			-1
 		end
 	end
@@ -68,7 +72,7 @@ class GameController
 	def evaluate_outcomes
 		non_dealer_hands.each do |hand|
 			outcome = evaluate_outcome(hand)
-			view.comparison_message(hand, outcome, dealer_hand.score)
+			view.comparison_message(hand, outcome, dealer_hand.max_score)
 		end
 	end
 	

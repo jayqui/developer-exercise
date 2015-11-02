@@ -120,6 +120,6 @@ describe "GameController" do
 	end
 
 	describe "#evaluate_outcome" do
-
+		
 	end
 end

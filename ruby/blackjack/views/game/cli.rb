@@ -63,9 +63,9 @@ class GameView
 
 	def comparison_message(hand, outcome, dealer_score)
 		case outcome
-		when 1 then puts "#{hand.player.name} (#{hand.max_score}) beats dealer (#{dealer_score})"
-		when 0 then puts "#{hand.player.name} (#{hand.max_score}) ties dealer (#{dealer_score})"
-		when -1 then puts "#{hand.player.name} (#{hand.max_score}) loses to dealer (#{dealer_score})"
+		when 1 then puts "#{hand.player.name} (#{hand.max_score}#{' (BUSTED)' if hand.is_busted}) beats dealer (#{dealer_score}#{' (BUSTED)' if dealer_score > 21})"
+		when 0 then puts "#{hand.player.name} (#{hand.max_score}#{' (BUSTED)' if hand.is_busted}) ties dealer (#{dealer_score}#{' (BUSTED)' if dealer_score > 21})"
+		when -1 then puts "#{hand.player.name} (#{hand.max_score}#{' (BUSTED)' if hand.is_busted}) loses to dealer (#{dealer_score}#{' (BUSTED)' if dealer_score > 21})"
 		end
 	end
 
