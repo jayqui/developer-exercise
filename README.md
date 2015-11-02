@@ -24,7 +24,7 @@ This is a simplified game of Blackjack with a command-line interface.  It does n
 The purpose of the exercise is to demonstrate proficiency with getting Ruby classes to interact.  That is why it is written without any of the typical backend frameworks such as Rails or Sinatra. 
 
 A guide to the files:
-_nagivate to the `blackjack/` folder and:
+_nagivate to the `blackjack/` folder and:_
 -  Play the game with `ruby play_blackjack.rb`
 -  Simulate the game with `ruby simulate_blackjack.rb` (you still must enter in player names)
 -  Run all 49 spec tests with `rspec .`
