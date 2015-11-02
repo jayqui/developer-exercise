@@ -23,8 +23,13 @@ class GameView
 	end
 
 	def say_dealer_show_card(card)
-		print "The dealer is showing: "
-		print "#{NAME_SYMBOLS[card.name]}#{SYM[card.suit]} \n\n"
+		puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+		puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+		print "~~ The dealer is showing: "
+		print "#{NAME_SYMBOLS[card.name]}#{SYM[card.suit]} ~~\n"
+		puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+		puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+		puts
 	end
 
 	def say_cards(cards)
