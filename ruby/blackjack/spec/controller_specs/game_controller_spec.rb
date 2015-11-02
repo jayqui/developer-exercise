@@ -132,6 +132,20 @@ describe "GameController" do
 		end
 	end
 
+	describe "#simulate_game" do
+		before(:each) do
+			gc.set_players
+
+			allow(view)
+			.to receive(:ask_for_action)
+			.and_return('h')
+		end
+
+		it "returns an array of hands" do
+			expect(gc.play_game.class == Array && gc.play_game[0].class).to eq(Hand)
+		end
+	end
+
 	describe "#evaluate_outcome" do
 		before(:each) do
 			gc.set_players

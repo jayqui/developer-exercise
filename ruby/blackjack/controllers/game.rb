@@ -22,6 +22,12 @@ class GameController
 		evaluate_outcomes
 	end
 
+	def simulate_game
+		announce_dealer_show_card
+		play_hands(round.hands, "simulate")
+		evaluate_outcomes
+	end
+
 	def play_hands(hands, simulate = false)
 		hands.each do |hand|
 			view.say_whose_turn(hand.player.name)
