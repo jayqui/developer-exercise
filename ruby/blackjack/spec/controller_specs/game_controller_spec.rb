@@ -5,6 +5,8 @@ describe "GameController" do
 	let(:gc) { GameController.new }
 	let(:view) { GameView.new }
 
+	let(:test_round) { Round.new([]) }
+
 	let(:non_lucky_player) { Player.new("Joe McPlain") }
 	let(:non_lucky_round) { Round.new([non_lucky_player]) }
 	let(:non_lucky_hand_array) { [Hand.new(non_lucky_player, gc.round.deck.deal_non_ace, gc.round.deck.deal_non_ace)] }
@@ -14,7 +16,18 @@ describe "GameController" do
 	let(:lucky_hand_array) { [Hand.new(lucky_player, gc.round.deck.deal_ace, gc.round.deck.deal_10_value_card)] }
 
 	let(:busted_hand_with_ace) { Hand.new(lucky_player, gc.round.deck.deal_ace, gc.round.deck.deal_10_value_card, gc.round.deck.deal_10_value_card, gc.round.deck.deal_10_value_card) }
+
+	# test hands
+	let(:hand_19) { Hand.new(Player.new("Mr. 19"), Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :six, 6), Card.new(:hearts, :two, 2)) }
+	let(:hand_20) { Hand.new(Player.new("Dr. 20"), Card.new(:spades, :king, 10), Card.new(:hearts, :jack, 10)) }
+	let(:hand_30) { Hand.new(Player.new("Ms. 30"), Card.new(:spades, :king, 10), Card.new(:hearts, :king, 10), Card.new(:hearts, :queen, 10)) }
+
+	# test hands: dealer
+	let(:dealer_hand_19) { Hand.new(Player.new("Dealer", true), Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :six, 6), Card.new(:hearts, :two, 2)) }
+	let(:dealer_hand_20) { Hand.new(Player.new("Dealer", true), Card.new(:spades, :king, 10), Card.new(:hearts, :jack, 10)) }
+	let(:dealer_hand_31) { Hand.new(Player.new("Dealer", true), Card.new(:spades, :king, 10), Card.new(:hearts, :king, 10), Card.new(:hearts, :queen, 10), Card.new(:spades, :ace, [1,11])) }
 	
+
 	before(:each) do
     io_obj = double
     expect(view)
@@ -120,6 +133,56 @@ describe "GameController" do
 	end
 
 	describe "#evaluate_outcome" do
-		
+		before(:each) do
+			gc.set_players
+		end
+
+		def eval_first_hand
+			gc.evaluate_outcome(gc.round.hands.first)
+		end
+
+		it "should return 0 if the hands are equal" do
+			allow(test_round).to receive(:hands) { [hand_19, dealer_hand_19] }
+			allow(gc).to receive(:round) { test_round }
+			expect(eval_first_hand).to eq(0)
+		end
+		it "should return 0 if hand & dealer hand are both busted" do
+			allow(test_round).to receive(:hands) { [hand_30, dealer_hand_31] }
+			allow(gc).to receive(:round) { test_round }
+			expect(eval_first_hand).to eq(0)
+		end
+		it "should return 1 if non-busted player hand beats dealer" do
+			allow(test_round).to receive(:hands) { [hand_20, dealer_hand_19] }
+			allow(gc).to receive(:round) { test_round }
+			expect(eval_first_hand).to eq(1)
+		end
+		it "should return -1 if non-busted dealer beats player" do
+			allow(test_round).to receive(:hands) { [hand_19, dealer_hand_20] }
+			allow(gc).to receive(:round) { test_round }
+			expect(eval_first_hand).to eq(-1)
+		end
+		it "should return 1 if player isn't busted but dealer is" do
+			allow(test_round).to receive(:hands) { [hand_19, dealer_hand_31] }
+			allow(gc).to receive(:round) { test_round }
+			expect(eval_first_hand).to eq(1)
+		end
+		it "should return -1 if dealer isn't busted but player is" do
+			allow(test_round).to receive(:hands) { [hand_30, dealer_hand_20] }
+			allow(gc).to receive(:round) { test_round }
+			expect(eval_first_hand).to eq(-1)
+		end
+	end
+
+	describe "#evaluate_outcomes" do
+		before(:each) do
+			gc.set_players
+
+			allow(view)
+			.to receive(:ask_for_action)
+			.and_return('h')
+		end
+		it "returns an array of hands" do
+			expect(gc.evaluate_outcomes.class == Array && gc.play_game[0].class).to eq(Hand)
+		end
 	end
 end
