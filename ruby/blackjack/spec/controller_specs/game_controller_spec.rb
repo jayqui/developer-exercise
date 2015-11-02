@@ -4,6 +4,16 @@ describe "GameController" do
 
 	let(:gc) { GameController.new }
 	let(:view) { GameView.new }
+
+	let(:non_lucky_player) { Player.new("Joe McPlain") }
+	let(:non_lucky_round) { Round.new([non_lucky_player]) }
+	let(:non_lucky_hand_array) { [Hand.new(non_lucky_player, gc.round.deck.deal_non_ace, gc.round.deck.deal_non_ace)] }
+
+	let(:lucky_player) { Player.new("Lady Luck") }
+	let(:lucky_round) { Round.new([lucky_player]) }
+	let(:lucky_hand_array) { [Hand.new(lucky_player, gc.round.deck.deal_ace, gc.round.deck.deal_10_value_card)] }
+
+	let(:busted_hand_with_ace) { Hand.new(lucky_player, gc.round.deck.deal_ace, gc.round.deck.deal_10_value_card, gc.round.deck.deal_10_value_card, gc.round.deck.deal_10_value_card) }
 	
 	before(:each) do
     io_obj = double
@@ -46,9 +56,6 @@ describe "GameController" do
 				.and_return('h')
 
 				# rig a hand that does not get dealt a blackjack
-				non_lucky_player = Player.new("Joe McPlain")
-				non_lucky_round = Round.new([non_lucky_player])
-				non_lucky_hand_array = [Hand.new(non_lucky_player, gc.round.deck.deal_non_ace, gc.round.deck.deal_non_ace)]
 				allow(non_lucky_round).to receive(:hands) { non_lucky_hand_array }
 				allow(gc).to receive(:round) { non_lucky_round }
 
@@ -68,7 +75,7 @@ describe "GameController" do
 			# end
 
 		end
-		
+
 		context "when hand is a blackjack" do
 			before(:each) do
 				gc.set_players
@@ -78,9 +85,6 @@ describe "GameController" do
 				.and_return('h')
 
 				# rig a lucky hand that gets dealt a (random) blackjack
-				lucky_player = Player.new("Lady Luck")
-				lucky_round = Round.new([lucky_player])
-				lucky_hand_array = [Hand.new(lucky_player, gc.round.deck.deal_ace, gc.round.deck.deal_10_value_card)]
 				allow(lucky_round).to receive(:hands) { lucky_hand_array }
 				allow(gc).to receive(:round) { lucky_round }
 
@@ -101,10 +105,21 @@ describe "GameController" do
 		end
 	end
 
-	# xdescribe "#play_game" do
-	# 	it "does stuff" do
-	# 		gc.set_players
-	# 		expect(gc.play_game).to eq('hi')
-	# 	end
-	# end
+	describe "#play_game" do
+		before(:each) do
+			gc.set_players
+
+			allow(view)
+			.to receive(:ask_for_action)
+			.and_return('h')
+		end
+
+		it "returns an array of hands" do
+			expect(gc.play_game.class == Array && gc.play_game[0].class).to eq(Hand)
+		end
+	end
+
+	describe "#evaluate_outcome" do
+
+	end
 end

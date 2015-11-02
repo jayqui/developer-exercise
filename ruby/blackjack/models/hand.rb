@@ -17,6 +17,15 @@ class Hand
   	end
   end
 
+  def max_score
+    if score.is_a?(Fixnum)
+      score
+    elsif score.is_a?(Array)
+      scores = score.select {|ele| ele <= 21}
+      scores.max || score.min
+    end
+  end
+
   def is_blackjack?
 		if cards.size == 2 && score == [11,21]
 	  	@is_blackjack = true

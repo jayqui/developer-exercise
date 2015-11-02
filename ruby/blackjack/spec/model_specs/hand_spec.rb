@@ -1,4 +1,6 @@
 require_relative "../../models/hand"
+require_relative "../../models/player"
+require_relative "../../models/card"
 
 describe "Hand" do
 
@@ -10,6 +12,7 @@ describe "Hand" do
 	let(:four_aces_and_six_hand) { Hand.new(player, Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :ace, [1,11]), Card.new(:diamonds, :ace, [1,11]), Card.new(:clubs, :ace, [1,11]), Card.new(:hearts, :six, 6))  }
 	let(:blackjack_hand) { Hand.new(player, Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :ten, 10)) }
 	let(:hand_21) { Hand.new(player, Card.new(:spades, :ace, [1,11]), Card.new(:hearts, :eight, 8), Card.new(:hearts, :two, 2)) }
+	let(:almost_royal_flush) { Hand.new(player, Card.new(:hearts, :ace, [1,11]), Card.new(:hearts, :king, 10), Card.new(:hearts, :queen, 10), Card.new(:hearts, :jack, 10)) }
 
 	describe "#score" do
 		context "hand with no aces" do
@@ -53,6 +56,24 @@ describe "Hand" do
 			end
 			it "should not have the instance variable" do
 				expect(hand_21.is_blackjack).to eq(nil)
+			end
+		end
+	end
+
+	describe "#max_score" do
+		context "when hand contains an ace" do
+			it "should return the score as a number" do
+				expect(hand_4.max_score).to eq(18)
+			end
+		end
+		context "when hand does not contain an ace" do
+
+			it "should return the score as a number" do
+				expect(hand_1.max_score).to eq(hand_1.score)
+			end
+
+			it "should return the score as a number even when ace-containing hand is busted" do
+				expect(almost_royal_flush.max_score).to eq(31)
 			end
 		end
 	end

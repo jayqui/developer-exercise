@@ -17,14 +17,16 @@ class GameController
 
 	def play_game
 		announce_dealer_show_card
+		play_hands
+		evaluate_outcomes
+	end
 
+	def play_hands
 		round.hands.each do |hand|
 			view.say_whose_turn(hand.player.name)
 			turn = Turn.new(hand, round)
-
 			handle_player_actions(turn)
 		end
-		evaluate_outcomes
 	end
 
 	def handle_player_actions(turn)
@@ -53,32 +55,24 @@ class GameController
 			end
 	end
 
+	def evaluate_outcome(hand)
+		if hand.max_score > dealer_hand.max_score
+			1
+		elsif hand.max_score == dealer_hand.max_score
+			0
+		elsif hand.max_score < dealer_hand.max_score
+			-1
+		end
+	end
+
 	def evaluate_outcomes
 		non_dealer_hands.each do |hand|
-			p "hand.inspect: #{hand.inspect}"
-			if max_score(hand) > max_score(dealer_hand)
-				p "greater"
-				outcome = 1
-			elsif max_score(hand) == max_score(dealer_hand)
-				p "tied"
-				outcome = 0
-			elsif max_score(hand) < max_score(dealer_hand)
-				p "less than"
-				outcome = -1
-			end
+			outcome = evaluate_outcome(hand)
 			view.comparison_message(hand, outcome, dealer_hand.score)
 		end
 	end
-
+	
 	private
-
-	def max_score(hand)
-		if hand.score.is_a?(Fixnum)
-			hand.score
-		elsif hand.score.is_a?(Array)
-			hand.score.select {|ele| ele < 21}.max
-		end
-	end
 
 	def dealer_hand
 		round.hands.find {|hand| hand.player.is_dealer}
