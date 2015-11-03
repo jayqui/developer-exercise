@@ -1,8 +1,8 @@
 ###############################
 ###############################
-puts "> Enter text to search for on YouTube: "
+puts ">>>> Enter text to search for on YouTube: "
 search_query = gets.chomp
-puts "> How many videos would you like (up to 20)?"
+puts ">>>> How many videos would you like (up to 20)?"
 how_many = gets.chomp.to_i
 ###############################
 ###############################
