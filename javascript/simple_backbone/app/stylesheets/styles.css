@@ -2,6 +2,9 @@
 	/*font-family: "Noto Sans", serif;*/
 	font-family: "Droid Serif", serif;
 }
+.heading	{
+	padding: 5px;
+}
 .app {
 	margin: 0 auto;
 	max-width: 800px;
@@ -37,8 +40,8 @@ aside	{
 	color: #fff;
 	text-decoration: underline;
 }
-.quote-container a:hover {
-	color: rgba(100,18,18,1);
+.attributions a:hover {
+	color: #3782DC;
 }
 .quote {
 	font-size: 1.2em;
