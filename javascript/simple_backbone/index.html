@@ -5,8 +5,10 @@
     <meta charset="UTF-8" />
 		<title>Qool Quotes</title>
 
-		<!-- vendor dependencies -->
     <link rel="stylesheet" type="text/css" href="vendor/stylesheets/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="app/stylesheets/styles.css">
+
+		<!-- vendor javascripts -->
   	<script src="vendor/javascripts/jquery-2.1.4.min.js"></script>
   	<script src="vendor/javascripts/underscore.js"></script>
   	<script src="vendor/javascripts/backbone.js"></script>
@@ -28,10 +30,13 @@
 	  		</tr>
 			</thead>
 			<tbody class="quotes-list">
-	  			<td><button class="btn btn-primary previous disabled">Previous</button></td>
-	  			<td><button class="btn btn-primary next">Next</button></td>
 			</tbody>
 		</table>
+		<div class="container">
+			<div class="pagination"><button class="btn btn-primary previous disabled">Previous</button></div>
+			<div class="pagination pagination-numbers"><span>1</span></div>
+			<div class="pagination"><button class="btn btn-primary next">Next</button></div>
+		</div>
 	</div>
 </body>
 </html>
