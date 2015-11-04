@@ -1,0 +1,1 @@
+var QuoteModel = Backbone.Model.extend({});
