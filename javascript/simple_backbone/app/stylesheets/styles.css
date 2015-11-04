@@ -6,7 +6,7 @@
 aside	{
 	border-radius: 10px;
 	width: 40px;
-	line-height: 100px;
+	line-height: 125px;
 	position: absolute;
 	background-color: purple;
 }
@@ -14,12 +14,17 @@ aside	{
 	border-radius: 10px;
 	margin: 3px;
 }
+.quotes-list {
+	min-height: 393px;
+}
 .quote-container {
-	height: 100px;
+	height: 125px;
 	background-color: aqua;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 .quote {
-	padding: 0 50px;
+	padding: 20px 50px 0;
 	min-width: 800px !important;
 	line-height: 110%;
 }
@@ -27,9 +32,9 @@ aside	{
 	display: inline-block;
 	padding: 10px 50px;
 }
-/*.context {
+.context {
 	font-style: italic;
-}*/
+}
 .pagination-numbers {
 	min-width: 50%;
 	padding: 0 50px;

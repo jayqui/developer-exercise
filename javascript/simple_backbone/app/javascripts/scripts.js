@@ -13,7 +13,7 @@ $.getJSON("https://gist.githubusercontent.com/anonymous/8f61a8733ed7fa41c4ea/raw
 	quotesArr.forEach(function(obj) {
 		obj.id = quotesArr.indexOf(obj) + 1;
 	})
-	quotesCollection.add(quotesArr.slice(0,5));
+	quotesCollection.add(quotesArr.slice(0,3));
 });
 
 // View for one quote
@@ -53,12 +53,12 @@ $(document).ready(function() {
 	var count = 0;
 	$(".next-button").on("click", function() {
 		quotesCollection.reset();
-		if (!(count + 5 > quotesArr.length)) count +=5;
-		quotesCollection.add(quotesArr.slice(count,count+5));
+		if (!(count + 3 > quotesArr.length)) count +=3;
+		quotesCollection.add(quotesArr.slice(count,count+3));
 	});
 	$(".previous-button").on("click", function() {
 		quotesCollection.reset();
-		if (!(count - 5 < 0)) count -=5;
-		quotesCollection.add(quotesArr.slice(count,count+5));
+		if (!(count - 3 < 0)) count -=3;
+		quotesCollection.add(quotesArr.slice(count,count+3));
 	});
 });
