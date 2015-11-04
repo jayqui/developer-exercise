@@ -48,3 +48,17 @@ var QuotesView = Backbone.View.extend({
 });
 
 var quotesView = new QuotesView();
+
+$(document).ready(function() {
+	var count = 0;
+	$(".next-button").on("click", function() {
+		quotesCollection.reset();
+		count +=5;
+		quotesCollection.add(quotesArr.slice(count,count+5));
+	});
+	$(".previous-button").on("click", function() {
+		quotesCollection.reset();
+		count -=5;
+		quotesCollection.add(quotesArr.slice(count,count+5));
+	});
+});
