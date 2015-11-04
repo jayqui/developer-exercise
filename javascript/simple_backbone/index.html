@@ -6,6 +6,7 @@
 		<title>Qool Quotes</title>
 
     <link rel="stylesheet" type="text/css" href="vendor/stylesheets/bootstrap.css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="app/stylesheets/styles.css">
 
 		<!-- vendor javascripts -->
@@ -21,37 +22,31 @@
 		<h1>Qool Quotes</h1>
 		<div class="quote-example-container">
 			<div class="quote"> quote </div>
-		  <li class="bullet source"> --  source </li>
-			<li class="bullet context"> context </li>
-			<li class="bullet theme"> theme </li>
-		</div>
-		<!-- <table class="table"> -->
-<!-- 			<thead>
-	  		<tr>
-	        <th>#</th>
-	  			<th>Quote</th>
-	  			<th>Context</th>
-	  			<th>Source</th>
-	  			<th>Theme</th>
-	  		</tr>
-			</thead> -->
-			<div class="quotes-list">
+			<div class="attributions-example">
+			  <li class="bullet source"> source </li>
+				<li class="bullet context"> context </li>
+				<li class="bullet theme"> theme <br> (click on a theme to group by it) </li>
 			</div>
-		<!-- </table> -->
+		</div>
+		<div class="quotes-list">
+		</div>
 		<div class="container">
 			<div class="pagination"><button class="btn btn-primary previous-button">Previous</button></div>
 			<div class="pagination pagination-numbers"><span>1</span></div>
 			<div class="pagination"><button class="btn btn-primary next-button">Next</button></div>
 		</div>
 	</div>
+				<!-- <ul></ul> -->
 
 		<script type="text/template" class="quotes-list-template">
 		<div class="quote-container">
 			<aside><%= id %></aside>
 			<div class="quote"><%= quote %></div>
-		  <li class="bullet source"> -- <%= source %></li>
-			<li class="bullet context"><%= context %></li>
-			<li class="bullet theme"><%= theme %></li>
+			<div class="attributions">
+			  <li class="bullet source"> -- <%= source %></li>
+				<li class="bullet context"><%= context %></li>
+				<li class="bullet theme"><a href="<%= theme %>"><%= theme %></a></li>
+			</div>
 		</div>
 		</script>
 </body>

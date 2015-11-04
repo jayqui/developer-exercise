@@ -1,3 +1,7 @@
+* {
+	/*font-family: "Noto Sans", serif;*/
+	font-family: "Droid Serif", serif;
+}
 .app {
 	margin: 0 auto;
 	max-width: 800px;
@@ -6,31 +10,53 @@
 aside	{
 	border-radius: 10px;
 	width: 40px;
-	line-height: 125px;
+	line-height: 150px;
 	position: absolute;
-	background-color: purple;
+	color: #fff;
+	background-color: rgba(100,18,18,0.75);
 }
 .quote-container, .quote-example-container {
 	border-radius: 10px;
 	margin: 3px;
 }
 .quotes-list {
-	min-height: 393px;
+	min-height: 468px;
+}
+.quote-example-container {
+	background-color: #ccc;
 }
 .quote-container {
-	height: 125px;
-	background-color: aqua;
+	position: relative;
+	height: 150px;
 	overflow-y: auto;
 	overflow-x: hidden;
+	color: #fff;
+	background-color: #3782DC;
+}
+.quote-container a {
+	color: #fff;
+	text-decoration: underline;
+}
+.quote-container a:hover {
+	color: rgba(100,18,18,1);
 }
 .quote {
+	font-size: 1.2em;
 	padding: 20px 50px 0;
 	min-width: 800px !important;
 	line-height: 110%;
 }
+.attributions {
+	position: absolute;
+	bottom: 0;
+	background-color: rgba(100,18,18,0.75);
+	min-width: 800px;
+}
 .bullet {
 	display: inline-block;
 	padding: 10px 50px;
+	font-size: 1.05em;
+	font-family: sans-serif;
 }
 .context {
 	font-style: italic;
@@ -38,4 +64,10 @@ aside	{
 .pagination-numbers {
 	min-width: 50%;
 	padding: 0 50px;
+}
+.btn-primary {
+	background-color: #3782DC;
+}
+.btn-primary:hover {
+	background-color: rgba(100,18,18,1);
 }
