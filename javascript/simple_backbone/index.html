@@ -17,8 +17,14 @@
     <script src="app/javascripts/scripts.js" defer></script>
 </head>
 <body>
-	<div class="container">
+	<div class="app">
 		<h1>Qool Quotes</h1>
+		<div class="quote-example-container">
+			<div class="quote"> quote </div>
+		  <li class="bullet source"> --  source </li>
+			<li class="bullet context"> context </li>
+			<li class="bullet theme"> theme </li>
+		</div>
 		<!-- <table class="table"> -->
 <!-- 			<thead>
 	  		<tr>
@@ -29,8 +35,8 @@
 	  			<th>Theme</th>
 	  		</tr>
 			</thead> -->
-			<ul class="quotes-list">
-			</ul>
+			<div class="quotes-list">
+			</div>
 		<!-- </table> -->
 		<div class="container">
 			<div class="pagination"><button class="btn btn-primary previous-button">Previous</button></div>
@@ -40,12 +46,12 @@
 	</div>
 
 		<script type="text/template" class="quotes-list-template">
-	  <li class="bullet id"><%= id %></li>
-		<li class="bullet quote"><%= quote %></li>
-		<br>
-		<li class="bullet context"><%= context %></li>
-	  <li class="bullet source"><%= source %></li>
-		<li class="bullet theme"><%= theme %></li>
+		<div class="quote-container">
+			<div class="quote"><%= id %> <%= quote %></div>
+		  <li class="bullet source"> -- <%= source %></li>
+			<li class="bullet context"><%= context %></li>
+			<li class="bullet theme"><%= theme %></li>
+		</div>
 		</script>
 </body>
 </html>
