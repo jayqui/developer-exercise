@@ -9,7 +9,7 @@ var QuotesView = Backbone.View.extend({
 		});
 	},
 	render: function() {
-		this.model.models.forEach(function(backBoneModel, index) {backBoneModel.set({eyeDee: index+1})})
+		this.model.models.forEach(function(bBModel, index) {bBModel.set({eyeDee: index+1})})
 
 		var self = this;
 		this.$el.html('');
