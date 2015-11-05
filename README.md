@@ -5,10 +5,18 @@ The original challenges can be found in the file `original_README.markdown`.  Th
 ## Javascript/Coffeescript
 
 ### Accordion
-Self-explanatory.  To see it in action, open the file `accordion.html`.
+A clone of the [jquery UI accordion interface](https://jqueryui.com/accordion/).  To see it in action, open the file `accordion.html`.
 
 ### Simple Backbone List
-TBD
+This is a client-side project written in Backbone.js that organizes some quotations pulled off the web from a JSON file.
+
+In addition to the responive design, it includes a dynamic, case-insensitive, client-side search box as well as topical filtering by drop-down menu.
+
+Stretch goals would include:
+-  Adding formal tests!! This is the biggest inadequacy of my work thus far. Yet getting Backbone to apparently do what I wanted to took priority over learning a new testing framework during this timeframe.
+-  Combining the topical drop-down search with the client-side live search.
+-  Adding a schema of numbers at the bottom of the search so the user can jump to results.
+
 
 ## Ruby
 
