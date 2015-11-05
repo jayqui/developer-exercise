@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 	var currentView = quotesView;
+	var currentCollection = quotesCollection;
 
 	ajaxRequest.done(function() {
 		quotesView.render();
@@ -19,15 +20,26 @@ $(document).ready(function() {
 		toggleButtonClasses(currentView);
 	});
 
+	$(".search").on("input",function() {
+		var query = $(this).val();
+		queryResults = currentCollection.models.filter(function(model) {return model.attributes.quote.toLowerCase().indexOf(query) > -1})
+		var queriedCollection = new QuotesCollection(queryResults);
+		// currentCollection = queriedCollection;
+		currentView = new QuotesView({model: queriedCollection});
+		currentView.render("preserveOrder");
+	})
+
 	$(".theme-dropdown").change(function() {
 		var query = $('option:selected').text();
+		$(".search").val("");
 		if (query === "all") {
+			// currentCollection = quotesCollection;
 			currentView = quotesView;
 			currentView.render();
 			toggleButtonClasses(currentView);
 		} 
 		else {
-			var queryTheme = quotesCollection.where({theme: query});
+			var queryTheme = currentCollection.where({theme: query});
 			var themedCollection = new QuotesCollection(queryTheme);
 			currentView = new QuotesView({model: themedCollection});
 			currentView.render("preserveOrder");

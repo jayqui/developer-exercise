@@ -50,11 +50,16 @@ aside	{
 li {
 	list-style-type: none;
 }
-.bullet {
+.bullet, .heading-li {
 	display: inline-block;
-	padding: 1vh 3vw;
 	font-size: 1.05em;
 	font-family: sans-serif;
+}
+.bullet {
+	padding: 1vh 3vw;
+}
+.heading-li {
+	padding: 1vh 1vw;
 }
 .context {
 	font-style: italic;
