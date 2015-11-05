@@ -9,6 +9,8 @@ var QuotesView = Backbone.View.extend({
 		});
 	},
 	render: function() {
+		this.model.models.forEach(function(ele, index) {ele.set({eyeDee: index+1})})
+
 		var self = this;
 		this.$el.html('');
 		var toArray = this.model.toArray();
@@ -16,7 +18,6 @@ var QuotesView = Backbone.View.extend({
 		_.each(nextThree, function(quote){
 			self.$el.append((new QuoteView({model: quote})).render().$el);
 		});
-		console.log("this.count:", this.count);
 		return this;
 	},
 	incrementCounter: function() {
