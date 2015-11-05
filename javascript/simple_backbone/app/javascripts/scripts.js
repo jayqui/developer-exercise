@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var currentView = quotesView;
 
 	ajaxRequest.done(function() {
+		quotesView.render();
 		toggleButtonClasses(currentView);
 	})
 
@@ -23,12 +24,14 @@ $(document).ready(function() {
 		if (query === "all") {
 			currentView = quotesView;
 			currentView.render();
+			toggleButtonClasses(currentView);
 		} 
 		else {
 			var queryTheme = quotesCollection.where({theme: query});
 			var themedCollection = new QuotesCollection(queryTheme);
 			currentView = new QuotesView({model: themedCollection});
 			currentView.render("preserveOrder");
+			toggleButtonClasses(currentView);
 		}
 	})
 });

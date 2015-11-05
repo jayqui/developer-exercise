@@ -4,11 +4,6 @@ var QuotesView = Backbone.View.extend({
 	incrementBy: 3,
 	model: quotesCollection,
 	el: $('.quotes-list'),
-	initialize: function() {
-		ajaxRequest.done(function(){
-			quotesView.render();
-		});
-	},
 	render: function(preserveOrder) {
 		if (!preserveOrder) {
 			this.addIds();
