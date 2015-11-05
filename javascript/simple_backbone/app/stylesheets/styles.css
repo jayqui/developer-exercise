@@ -12,7 +12,7 @@
 aside	{
 	border-radius: 10px;
 	width: 40px;
-	line-height: 150px;
+	line-height: 175px;
 	position: absolute;
 	color: #fff;
 	background-color: rgba(100,18,18,0.75);
@@ -22,44 +22,37 @@ aside	{
 	margin: 3px;
 }
 .quotes-list {
-	min-height: 468px;
+	min-height: 531px;
 }
 .quote-example-container {
 	background-color: #ccc;
 }
 .quote-container {
 	position: relative;
-	height: 150px;
+	height: 175px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	color: #fff;
 	background-color: #3782DC;
 }
-/*.quote-container a {
-	color: #fff;
-	text-decoration: underline;
-}
-.attributions a:hover {
-	color: #3782DC;
-}*/
 .quote {
 	font-size: 1.2em;
 	padding: 20px 50px 0;
-	min-width: 800px !important;
+	min-width: 75% !important;
 	line-height: 110%;
 }
 .attributions {
 	position: absolute;
 	bottom: 0;
 	background-color: rgba(100,18,18,0.75);
-	min-width: 800px;
+	min-width: 100%;
 }
 li {
 	list-style-type: none;
 }
 .bullet {
 	display: inline-block;
-	padding: 10px 50px;
+	padding: 1vh 3vw;
 	font-size: 1.05em;
 	font-family: sans-serif;
 }

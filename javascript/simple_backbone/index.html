@@ -26,11 +26,16 @@
 	<div class="app">
 		<h1 class="heading">Qool Quotes</h1>
 		<div class="quote-example-container">
-			<div class="quote"> quote </div>
 			<div class="attributions-example">
 			  <li class="bullet source"> source </li>
 				<li class="bullet context"> context </li>
-				<li class="bullet theme"> theme <br> (click on a theme to group by it) </li>
+				<li class="bullet theme"> theme:
+					<select class="theme-dropdown">
+						<option value="all">all</option>
+						<option value="movies">movies</option>
+						<option value="games">games</option>
+					</select>
+				</li>
 			</div>
 		</div>
 		<div class="quotes-list">
