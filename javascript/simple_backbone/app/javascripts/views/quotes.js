@@ -8,13 +8,13 @@ var QuotesView = Backbone.View.extend({
 			quotesView.render();
 		});
 	},
-	render: function() {		
-		this.addIds();
-
+	render: function(preserveOrder) {
+		if (!preserveOrder) {
+			this.addIds();
+		}
 		var self = this;
 		this.$el.html('');
 		var toArray = this.model.toArray();
-
 		var nextThree = toArray.slice(this.counter,this.counter+3);
 		_.each(nextThree, function(quote){
 			self.$el.append((new QuoteView({model: quote})).render().$el);
