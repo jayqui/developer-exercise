@@ -1,18 +1,29 @@
 // View for all quotes
 var QuotesView = Backbone.View.extend({
+	count: 0,
 	model: quotesCollection,
 	el: $('.quotes-list'),
 	initialize: function() {
-		this.render();
-		this.model.on('add', this.render, this);
+		ajaxRequest.done(function(){
+			quotesView.render();
+		});
 	},
 	render: function() {
 		var self = this;
 		this.$el.html('');
-		_.each(this.model.toArray(), function(quote){
+		var toArray = this.model.toArray();
+		var nextThree = toArray.slice(this.count,this.count+3);
+		_.each(nextThree, function(quote){
 			self.$el.append((new QuoteView({model: quote})).render().$el);
 		});
+		console.log("this.count:", this.count);
 		return this;
+	},
+	incrementCounter: function() {
+		if (!(this.count + 3 > this.model.length-1)) {this.count += 3};
+	},
+	decrementCounter: function() {
+		if (!(this.count - 3 < 0)) {this.count -= 3};
 	}
 });
 
