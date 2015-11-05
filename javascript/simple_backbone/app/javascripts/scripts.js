@@ -22,7 +22,8 @@ $(document).ready(function() {
 
 	$(".search").on("input",function() {
 		var query = $(this).val();
-		queryResults = currentCollection.models.filter(function(model) {return model.attributes.quote.toLowerCase().indexOf(query.toLowerCase()) > -1})
+		queryResults = currentCollection.models.filter(function(model) {return inclusionSearch(model,query)
+		});
 		var queriedCollection = new QuotesCollection(queryResults);
 		currentView = new QuotesView({model: queriedCollection});
 		currentView.render("preserveOrder");
@@ -45,6 +46,10 @@ $(document).ready(function() {
 		}
 	})
 });
+
+function inclusionSearch(model,query) {
+	return model.attributes.quote.toLowerCase().indexOf(query.toLowerCase()) > -1
+}
 
 function toggleButtonClasses(currentView) {
 	if (currentView.counter === 0) {
