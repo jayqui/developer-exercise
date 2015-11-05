@@ -21,6 +21,7 @@ $(document).ready(function() {
 	});
 
 	$(".search").on("input",function() {
+		resetDropDown();
 		var query = $(this).val();
 		queryResults = currentCollection.models.filter(function(model) {return inclusionSearch(model,query)
 		});
@@ -30,7 +31,7 @@ $(document).ready(function() {
 	})
 
 	$(".theme-dropdown").change(function() {
-		var query = $('option:selected').text();
+		var query = $("option:selected").text();
 		$(".search").val("");
 		if (query === "all") {
 			currentView = quotesView;
@@ -49,6 +50,10 @@ $(document).ready(function() {
 
 function inclusionSearch(model,query) {
 	return model.attributes.quote.toLowerCase().indexOf(query.toLowerCase()) > -1
+}
+
+function resetDropDown() {
+	$('select>option:eq(0)').attr('selected', true);
 }
 
 function toggleButtonClasses(currentView) {
