@@ -1,5 +1,4 @@
 * {
-	/*font-family: "Noto Sans", serif;*/
 	font-family: "Droid Serif", serif;
 }
 .heading	{
@@ -36,13 +35,13 @@ aside	{
 	color: #fff;
 	background-color: #3782DC;
 }
-.quote-container a {
+/*.quote-container a {
 	color: #fff;
 	text-decoration: underline;
 }
 .attributions a:hover {
 	color: #3782DC;
-}
+}*/
 .quote {
 	font-size: 1.2em;
 	padding: 20px 50px 0;
@@ -54,6 +53,9 @@ aside	{
 	bottom: 0;
 	background-color: rgba(100,18,18,0.75);
 	min-width: 800px;
+}
+li {
+	list-style-type: none;
 }
 .bullet {
 	display: inline-block;
