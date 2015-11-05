@@ -1,14 +1,50 @@
-.accordion-header {
-	background-color: gray;
-	margin: 2px;
+* {
+	font-family: Verdana, sans-serif;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+.accordion-wrapper {
+	border: 1px solid #d3d3d3;
+}
+
+/* Normally I wouldn't use an <a> tag as a block element, but I'm deciding to leave the HTML file exactly as I found it.*/
+.accordion-header a {
+	color: #555;
+	display: block;
+	margin: 0 -15px;
+	border: 1px solid #d3d3d3;
+	padding: 10px;
 	border-radius: 5px;
-	padding: 15px;
+	background-image: linear-gradient(#eee 0%, #eee 50%, #e6e6e6 50%, #e6e6e6 100%);
+}
+.accordion-header a:hover {
+	color: #212121;
+	border: 1px solid #999;
+	background-image: linear-gradient(#ddd 0%, #ddd 50%, #d6d6d6 50%, #d6d6d6 100%);
+}
+.accordion-header {
+	margin: 2px;
+	border: 1px solid #d3d3d3;
+	border-radius: 5px;
+	padding: 0 15px;
+}
+.accordion-header.active, .accordion-header.active a {
+	color: #212121;
+	background-image: none;
+	background-color: white;
 }
 
 .accordion-header div {
-	background-color: lightgray;
+	background-color: white;
 	height: 100px;
-	overflow: scroll;
+	overflow: auto;
 	margin: 0;
 	padding: 0;
+	font-size: 1.1em;
 }
