@@ -1,14 +1,14 @@
 class Array
   def where(supplied_hash)
-  	self.select do |hsh|
+  	self.select do |hash|
   		valid_candidate = true
 	  	supplied_hash.each_pair do |k,v|
-  			if !(hsh[k] == v || (hsh[k].is_a?(String) && hsh[k].match(v)))
+  			if !(hash[k] == v || (hash[k].is_a?(String) && hash[k].match(v)))
   				valid_candidate = false
   				break
   			end
   		end
-			hsh if valid_candidate
+			hash if valid_candidate
   	end
   end
 
