@@ -122,4 +122,20 @@ $(document).ready(function(){
 	  $ah5.trigger("click");
 	});
 
+	test("Only first pane visible after first header is clicked", function(assert) {
+		var done = assert.async();
+
+		$ah1.on("click",function() {
+			setTimeout(function(){
+				assert.ok($ah1div.is(":visible"));
+				assert.ok(!$ah2div.is(":visible"));
+				assert.ok(!$ah3div.is(":visible"));
+				assert.ok(!$ah4div.is(":visible"));
+				assert.ok(!$ah5div.is(":visible"));
+				done();
+			},500)
+		});
+	  $ah1.trigger("click");
+	});
+
 });
