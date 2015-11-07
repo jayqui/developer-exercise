@@ -32,11 +32,3 @@ yt = YouTubeSearch.new
 plusified_query = yt.get_query
 how_many = yt.ask_how_many
 p yt.search_youtube(plusified_query,how_many)
-
-# Note to self: for future coolness:
-
-#### Obviously, you could add an in-browser front end that supplies the string and number via html <input>s
-#
-#### You could also embed the results right on the search page with the 'embed' feature (see tab below any video)---they just give you an iframe like so:
-#
-# <iframe width="560" height="315" src="https://www.youtube.com/embed/Cmuc2Zu7I0Q" frameborder="0" allowfullscreen></iframe>
